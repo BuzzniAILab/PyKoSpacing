@@ -51,9 +51,7 @@ class Spacing:
                 res_sent.append(' ')
             else:
                 res_sent.append(i)
-        subs = re.sub(self.pattern, ' ', ''.join(res_sent).replace('^', ' '))
-        subs = subs.replace('«', '')
-        subs = subs.replace('»', '')
+        subs = re.sub(self.pattern, ' ', ''.join(res_sent))
         return subs
 
     def apply_rules(self, spaced_sent):
