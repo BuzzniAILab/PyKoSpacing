@@ -31,8 +31,8 @@ class Spacing:
         self.rules = [(re.compile('\s*'.join(r)), r) for r in rules]
 
     def get_spaced_sent(self, raw_sent):
-        raw_sent_ = "«" + raw_sent + "»"
-        raw_sent_ = raw_sent_.replace(' ', '^')
+        raw_sent_ = "⁌" + raw_sent + "⁍"
+        raw_sent_ = raw_sent_.replace(' ', '⁁')
         sents_in = [raw_sent_, ]
         mat_in = encoding_and_padding(
             word2idx_dic=self._w2idx, sequences=sents_in, maxlen=200,
@@ -51,9 +51,9 @@ class Spacing:
                 res_sent.append(' ')
             else:
                 res_sent.append(i)
-        subs = re.sub(self.pattern, ' ', ''.join(res_sent).replace('^', ' '))
-        subs = subs.replace('«', '')
-        subs = subs.replace('»', '')
+        subs = re.sub(self.pattern, ' ', ''.join(res_sent).replace('⁁', ' '))
+        subs = subs.replace('⁌', '')
+        subs = subs.replace('⁍', '')
         return subs
 
     def apply_rules(self, spaced_sent):
